@@ -5,3 +5,4 @@ authors = ["Robin Thrift <services@robinthrift.com>"]
 
 [dependencies]
 getopts = "0.2"
+regex = "0.1"

@@ -1,7 +1,9 @@
+extern crate regex;
 extern crate getopts;
 use getopts::Options;
 use std::env;
 
+mod utils;
 mod commands;
 
 fn print_error(txt: &str) {
@@ -24,9 +26,13 @@ fn main() {
     }
 
     if !matches.free.is_empty() {
-        match commands::exec_command(&matches.free[0].clone()) {
+        let mut frees = matches.free.clone();
+        let cmd_name = &frees[0].clone();
+        let cmd_args = &frees.split_off(1);
+
+        match commands::find_and_exec_command(cmd_name, cmd_args) {
             Ok(r) => { println!("{}", r); }
-            Err(e) => { print_error(e); }
+            Err(e) => { print_error(&e); }
         }
     } else {
         print_error("Please specify a command");

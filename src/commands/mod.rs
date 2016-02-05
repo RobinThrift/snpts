@@ -1,18 +1,13 @@
-
-
-pub trait Executable {
-    fn exec(&self, args: &Vec<String>) -> Result<String, String>;
-}
-
-pub trait Named {
-    fn get_name(&self) -> String;
-}
+use std::collections::HashMap;
 
 mod new;
 
 pub fn find_and_exec_command(name: &str, args: &Vec<String>) -> Result<String, String> {
-    match name {
-        "new" => new::NewCommand::new().exec(args),
-        _ => Err("Command not recognised".to_string())
+    let mut command_map = HashMap::new();
+    command_map.insert("new", new::exec);
+
+    match command_map.get(name) {
+        Some(exec) => exec(args),
+        None => Err("Command not recognised".to_string())
     }
 }

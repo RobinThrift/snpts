@@ -6,3 +6,4 @@ authors = ["Robin Thrift <services@robinthrift.com>"]
 [dependencies]
 getopts = "0.2"
 regex = "0.1"
+rustc-serialize = "0.3.16"

@@ -1,5 +1,7 @@
 use ::regex::Regex;
 
+pub mod db;
+
 pub fn insert_vars(snippet: &str, vars: &Vec<&str>) -> String {
     let re = Regex::new(r"(\$\d)").unwrap();
     let mut res = snippet.to_string();

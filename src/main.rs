@@ -1,5 +1,7 @@
+extern crate rustc_serialize;
 extern crate regex;
 extern crate getopts;
+
 use getopts::Options;
 use std::env;
 
